@@ -5,7 +5,7 @@
 // Native I/O files
 //****************************************************
  dcl-f PRODUCTS  DISK   USROPN Rename(PRODUCTS :XPROD_t)  Keyed;
- dcl0f XPRODCAT  DISK   USROPN Rename(PRODUCTS :XPRODC_t) Keyed;
+ dcl-f XPRODCAT  DISK   USROPN Rename(PRODUCTS :XPRODC_t) Keyed;
 
 //****************************************************
 // Global data
