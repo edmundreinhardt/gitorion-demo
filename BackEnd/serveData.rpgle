@@ -104,7 +104,7 @@
        Item                         likeds(prod_t) dim(ARRAYMAX);
      end-pi;
 // vars
-     dcl-s cat                      BinDec(9: 0); inz(0);
+     dcl-s cat                      BinDec(9: 0) inz(0);
      dcl-ds PRODFILE1               likerec(XPRODC_t:*INPUT);
 
           open_files();
