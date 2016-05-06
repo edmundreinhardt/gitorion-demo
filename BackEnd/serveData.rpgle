@@ -1,5 +1,5 @@
 **free
- ctl-opt AlwNull(*UsrCtl)
+ ctl-opt AlwNull(*UsrCtl);
 
 //****************************************************
 // Native I/O files
@@ -30,7 +30,7 @@
      Count                        Int(10: 0);
      Item                         likeds(prod_t) dim(ARRAYMAX);
  end-pr;
- 
+
  dcl-pr product_search_cat;
      cat                          BinDec(9: 0);
      Max                          Int(10: 0);
@@ -54,10 +54,10 @@
      myCount                      Int(10: 0);
      findMe                       likeds(prod_t) dim(ARRAYMAX);
  end-pi;
- 
+
 // vars
  dcl-s cat                        BinDec(9: 0) inz(0);
- 
+
  // Mainline
         cat = myCat;
         if cat > 9;
@@ -66,7 +66,7 @@
           product_search_cat(cat:myMax:myCount:findMe);
         endif;
         return; // *inlr = *on;
- 
+
 
 //****************************************************
 // open_files(): Open files used by this srvpgm
@@ -74,7 +74,7 @@
  dcl-proc open_files;
      dcl-pi open_files;
      end-pi;
-      
+
         if (FilesAreOpen);
            return;
         endif;
@@ -94,11 +94,11 @@
 
 
 //****************************************************
-//  product_all: 
+//  product_all:
 //    Routine to load the search items on disk.
 //****************************************************
  dcl-proc product_all;
-     dcl-pi product_all;    
+     dcl-pi product_all;
        Max                          Int(10: 0);
        Count                        Int(10: 0);
        Item                         likeds(prod_t) dim(ARRAYMAX);
@@ -106,7 +106,7 @@
 // vars
      dcl-s cat                      BinDec(9: 0); inz(0);
      dcl-ds PRODFILE1               likerec(XPRODC_t:*INPUT);
-      
+
           open_files();
           Count = 0;
           setll cat XPRODCAT;
@@ -126,7 +126,7 @@
  end-proc;
 
 //****************************************************
-//  product_search_cat: 
+//  product_search_cat:
 //    Routine to load the search items on disk.
 //****************************************************
  dcl-proc product_search_cat;
