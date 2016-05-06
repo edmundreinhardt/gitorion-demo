@@ -1,6 +1,5 @@
 #!/QOpenSys/usr/bin/python3
 import sys
-import cgi
 import os
 from itoolkit import *
 from itoolkit.rest.irestcall import *
@@ -11,10 +10,7 @@ def show_table():
   # ----------------------
   itransport = iRestCall("http://65.183.160.36/cgi-bin/xmlcgi.pgm","*NONE","*NONE")
   
-  # ---------------------
-  # normal fastcgi processing
-  # ----------------------
-  myCat = '1'
+  myCat = '10'
   #myMax = form['myMax'][0]
   myMax = '20'
   myCount = '0'
