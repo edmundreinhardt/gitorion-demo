@@ -20,21 +20,23 @@ def show_table():
   myCount = '0'
   findMe = ''
   
-  #     D ARRAYMAX        c                   const(999)
-  #     D prod_t          ds                  qualified based(Template)
-  #     D  prod                         10i 0
-  #     D  cat                          10i 0
-  #     D  title                        64a   varying(4)
-  #     D  photo                        64a   varying(4)
-  #     D  price                        12p 2
-  #      *+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-  #      * main(): Control flow
-  #      *+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-  #     D Main            PI 
-  #     D  myCat                        10i 0
-  #     D  myMax                        10i 0
-  #     D  myCount                      10i 0
-  #     D  findMe                             likeds(prod_t) dim(ARRAYMAX)
+  # dcl-c ARRAYMAX      999;
+  # dcl-ds prod_t qualified based(Template);
+  #   prod  int(10);
+  #   cat   int(10);
+  #   title int(10);
+  #   photo varchar(64);
+  #   price packed(12:2);
+  # end-ds;    
+  #//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  #// main(): Control flow
+  #//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  # dcl-pi Main;
+  #     myCat                        Int(10: 0);
+  #     myMax                        Int(10: 0);
+  #     myCount                      Int(10: 0);
+  #     findMe                       likeds(prod_t) dim(ARRAYMAX);
+  # end-pi;        
   itool = iToolKit()
   itool.add(iCmd('chglibl', 'CHGLIBL LIBL(HATS) CURLIB(HATS)'))
   itool.add(
