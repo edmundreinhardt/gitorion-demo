@@ -4,8 +4,8 @@
 //****************************************************
 // Native I/O files
 //****************************************************
- dcl-f PRODUCTS  DISK   USROPN Rename(PRODUCTS :XPROD_t)  Keyed;
- dcl-f XPRODCAT  DISK   USROPN Rename(PRODUCTS :XPRODC_t) Keyed;
+ dcl-f PRODUCTS DISK USROPN Rename(PRODUCTS :XPROD_t)  Keyed;
+ dcl-f XPRODCAT DISK USROPN Rename(PRODUCTS :XPRODC_t) Keyed;
 
 //****************************************************
 // Global data
@@ -26,44 +26,40 @@
  dcl-pr open_files;
 
  dcl-pr product_all;
-     Max                          Int(10: 0);
-     Count                        Int(10: 0);
-     Item                         likeds(prod_t) dim(ARRAYMAX);
+     Max                    Int(10: 0);
+     Count                  Int(10: 0);
+     Item                   likeds(prod_t) dim(ARRAYMAX);
  end-pr;
 
  dcl-pr product_search_cat;
-     cat                          BinDec(9: 0);
-     Max                          Int(10: 0);
-     Count                        Int(10: 0);
-     Item                         likeds(prod_t) dim(ARRAYMAX);
+     cat                    BinDec(9: 0);
+     Max                    Int(10: 0);
+     Count                  Int(10: 0);
+     Item                   likeds(prod_t) dim(ARRAYMAX);
  end-pr;
 
- dcl-pr Main                    ExtPgm('PRODUCT');
-     myCat                      Int(10: 0);
-     myMax                      Int(10: 0);
-     myCount                    Int(10: 0);
-     findMe                     likeds(prod_t) dim(ARRAYMAX);
+ dcl-pr Main                ExtPgm('PRODUCT');
+     myCat                  Int(10: 0);
+     myMax                  Int(10: 0);
+     myCount                Int(10: 0);
+     findMe                 likeds(prod_t) dim(ARRAYMAX);
  end-pr;
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // main(): Control flow
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  dcl-pi Main;
-     myCat                        Int(10: 0);
-     myMax                        Int(10: 0);
-     myCount                      Int(10: 0);
-     findMe                       likeds(prod_t) dim(ARRAYMAX);
+     myCat                  Int(10: 0);
+     myMax                  Int(10: 0);
+     myCount                Int(10: 0);
+     findMe                 likeds(prod_t) dim(ARRAYMAX);
  end-pi;
 
-// vars
- dcl-s cat                        BinDec(9: 0) inz(0);
-
  // Mainline
-        cat = myCat;
-        if cat > 9;
+        if myCat > 9;
           product_all(myMax:myCount:findMe);
         else;
-          product_search_cat(cat:myMax:myCount:findMe);
+          product_search_cat(myCat:myMax:myCount:findMe);
         endif;
         return; // *inlr = *on;
 
@@ -72,9 +68,6 @@
 // open_files(): Open files used by this srvpgm
 //****************************************************
  dcl-proc open_files;
-     dcl-pi open_files;
-     end-pi;
-
         if (FilesAreOpen);
            return;
         endif;
