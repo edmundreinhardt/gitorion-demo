@@ -1,5 +1,5 @@
 **free
- ctl-opt AlwNull(*UsrCtl);
+ ctl-opt AlwNull(*UsrCtl) DftName('getData');
 
 //****************************************************
 // Native I/O files
