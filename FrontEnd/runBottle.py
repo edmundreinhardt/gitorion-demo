@@ -1,8 +1,8 @@
 #!/QOpenSys/usr/bin/python3
 from bottle import request, route, run
 from showTable import show_table
-from itoolkit import *
-from itoolkit.lib.ilibcall import *     #for local jobs
+#from itoolkit import *
+#from itoolkit.lib.ilibcall import *     #for local jobs
  
  
 port_number=80
