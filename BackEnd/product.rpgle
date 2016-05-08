@@ -1,10 +1,9 @@
 **free
- ctl-opt AlwNull(*UsrCtl) DftName('getData');
+ ctl-opt AlwNull(*UsrCtl) DftName(product) DftActGrp(*NO);
 
 //****************************************************
 // Native I/O files
 //****************************************************
- dcl-f PRODUCTS DISK USROPN Rename(PRODUCTS :XPROD_t)  Keyed;
  dcl-f XPRODCAT DISK USROPN Rename(PRODUCTS :XPRODC_t) Keyed;
 
 //****************************************************
@@ -24,6 +23,7 @@
 // prototypes
 //****************************************************
  dcl-pr open_files;
+ end-pr;
 
  dcl-pr product_all;
      Max                    Int(10: 0);
@@ -54,12 +54,13 @@
      myCount                Int(10: 0);
      findMe                 likeds(prod_t) dim(ARRAYMAX);
  end-pi;
-
+ dcl-s cat BinDec(9: 0); // convert data type
  // Mainline
         if myCat > 9;
           product_all(myMax:myCount:findMe);
         else;
-          product_search_cat(myCat:myMax:myCount:findMe);
+          cat = myCat;
+          product_search_cat(cat:myMax:myCount:findMe);
         endif;
         return; // *inlr = *on;
 
@@ -72,7 +73,6 @@
            return;
         endif;
 
-        open PRODUCTS;
         open XPRODCAT;
 
         FilesAreOpen=*ON;
@@ -128,6 +128,7 @@
        Max                          Int(10: 0);
        Count                        Int(10: 0);
        Item                         likeds(prod_t) dim(ARRAYMAX);
+     end-pi;
 // vars
      dcl-ds PRODFILE1               likerec(XPRODC_t:*INPUT);
 

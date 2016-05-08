@@ -1,2 +1,2 @@
 #!/QOpenSys/usr/bin/bsh
-/qsys.lib/oriondemo.lib/bldBackEnd.pgm `pwd`
+system -i "call oriondemo/bldBackEnd ( '$PWD' )"
