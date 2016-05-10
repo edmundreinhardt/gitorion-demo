@@ -1,89 +1,43 @@
 **free
- ctl-opt AlwNull(*UsrCtl) DftName(product) DftActGrp(*NO);
+ ctl-opt AlwNull(*UsrCtl);
+ /if defined(*CRTBNDRPG)
+ ctl-opt DftActGrp(*NO);
+ /endif
 
 //****************************************************
 // Native I/O files
 //****************************************************
- dcl-f XPRODCAT DISK USROPN Rename(PRODUCTS :XPRODC_t) Keyed;
+ dcl-f XPRODCAT DISK Rename(PRODUCTS :XPRODC_t) Keyed;
 
 //****************************************************
 // Global data
 //****************************************************
  dcl-c ARRAYMAX      999;
- dcl-s FilesAreOpen  ind   inz(*OFF);
  dcl-ds prod_t qualified based(Template);
    prod  int(10);
    cat   int(10);
-   title int(10);
+   title varchar(64);
    photo varchar(64);
    price packed(12:2);
  end-ds;
 
-//****************************************************
-// prototypes
-//****************************************************
- dcl-pr open_files;
- end-pr;
-
- dcl-pr product_all;
-     Max                    Int(10: 0);
-     Count                  Int(10: 0);
-     Item                   likeds(prod_t) dim(ARRAYMAX);
- end-pr;
-
- dcl-pr product_search_cat;
-     cat                    BinDec(9: 0);
-     Max                    Int(10: 0);
-     Count                  Int(10: 0);
-     Item                   likeds(prod_t) dim(ARRAYMAX);
- end-pr;
-
- dcl-pr Main                ExtPgm('PRODUCT');
-     myCat                  Int(10: 0);
-     myMax                  Int(10: 0);
-     myCount                Int(10: 0);
-     findMe                 likeds(prod_t) dim(ARRAYMAX);
- end-pr;
-
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// main(): Control flow
+// main Control flow
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- dcl-pi Main;
+ dcl-pi *n;
      myCat                  Int(10: 0);
      myMax                  Int(10: 0);
      myCount                Int(10: 0);
      findMe                 likeds(prod_t) dim(ARRAYMAX);
  end-pi;
- dcl-s cat BinDec(9: 0); // convert data type
+
  // Mainline
         if myCat > 9;
           product_all(myMax:myCount:findMe);
         else;
-          cat = myCat;
-          product_search_cat(cat:myMax:myCount:findMe);
+          product_search_cat(MyCat:myMax:myCount:findMe);
         endif;
         return; // *inlr = *on;
-
-
-//****************************************************
-// open_files(): Open files used by this srvpgm
-//****************************************************
- dcl-proc open_files;
-        if (FilesAreOpen);
-           return;
-        endif;
-
-        open XPRODCAT;
-
-        FilesAreOpen=*ON;
-        return;
-
-        begsr *pssr;
-           close *all;
-           FilesAreOpen=*OFF;
-        endsr;
-
- end-proc;
 
 
 //****************************************************
@@ -100,10 +54,9 @@
      dcl-s cat                      BinDec(9: 0) inz(0);
      dcl-ds PRODFILE1               likerec(XPRODC_t:*INPUT);
 
-          open_files();
           Count = 0;
           setll cat XPRODCAT;
-          read(n) XPRODCAT PRODFILE1;
+          read XPRODCAT PRODFILE1;
           dow not %eof(XPRODCAT);
             if Count = Max;
               leave;
@@ -114,7 +67,7 @@
             Item(Count).TITLE    = PRODFILE1.TITLE;
             Item(Count).PHOTO    = PRODFILE1.PHOTO;
             Item(Count).PRICE    = PRODFILE1.PRICE;
-            read(n) XPRODCAT PRODFILE1;
+            read XPRODCAT PRODFILE1;
           enddo;
  end-proc;
 
@@ -124,7 +77,7 @@
 //****************************************************
  dcl-proc product_search_cat;
      dcl-pi product_search_cat;
-       cat                          BinDec(9: 0);
+       cat                          BinDec(9: 0) const;
        Max                          Int(10: 0);
        Count                        Int(10: 0);
        Item                         likeds(prod_t) dim(ARRAYMAX);
@@ -132,10 +85,9 @@
 // vars
      dcl-ds PRODFILE1               likerec(XPRODC_t:*INPUT);
 
-          open_files();
           Count = 0;
-          setll cat XPRODCAT;
-          reade(n) cat XPRODCAT PRODFILE1;
+          setll (cat) XPRODCAT;
+          reade (cat) XPRODCAT PRODFILE1;
           dow not %eof(XPRODCAT);
             if Count = Max;
               leave;
@@ -146,6 +98,6 @@
             Item(Count).TITLE    = PRODFILE1.TITLE;
             Item(Count).PHOTO    = PRODFILE1.PHOTO;
             Item(Count).PRICE    = PRODFILE1.PRICE;
-            reade(n) cat XPRODCAT PRODFILE1;
+            reade (cat) XPRODCAT PRODFILE1;
           enddo;
  end-proc;

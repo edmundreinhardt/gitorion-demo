@@ -20,7 +20,7 @@ def show_table():
   # dcl-ds prod_t qualified based(Template);
   #   prod  int(10);
   #   cat   int(10);
-  #   title int(10);
+  #   title varchar(64);
   #   photo varchar(64);
   #   price packed(12:2);
   # end-ds;    
