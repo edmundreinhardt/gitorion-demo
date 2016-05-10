@@ -11,7 +11,6 @@ def show_table():
   itransport = iRestCall("http://65.183.160.36/cgi-bin/xmlcgi.pgm","*NONE","*NONE")
   
   myCat = '10'
-  #myMax = form['myMax'][0]
   myMax = '20'
   myCount = '0'
   findMe = ''
@@ -65,7 +64,7 @@ def show_table():
   if 'success' in product:
     html_result = ( "<style>table, th, td {border: 1px solid black;border-collapse: collapse;}"
        "th, td {padding: 5px;text-align: left;width: 200px;}tr:nth-child(even) {background-color: #f3f3f3;}"
-       "tr:nth-child(odd) {background-color:#fff;}th {background-color: #008ABF;color: white}</style>")
+       "tr:nth-child(odd) {background-color:#fff;}th {background-color: #008ABF;color: white}</style>\n")
     html_result += ('<table border="1">\n'
                     " <th>title</th>\n"
                     " <th>price</th>\n"
@@ -76,11 +75,11 @@ def show_table():
       prods = [tmp]
     for r in prods:
       if 'title' in r:
-        html_result += 
-         (" <tr>"
-          "  <td>" + r['title'] + "</td>"
-          "  <td>" + r['price'] + "</td>"
-          "  <td><img src='http://65.183.160.36/hats/master/" + r['photo'] + "'/></td>"
+        html_result += (
+          " <tr>"
+          " <td>" + r['title'] + "</td>"
+          " <td>" + r['price'] + "</td>"
+          " <td><img src='http://65.183.160.36/hats/master/" + r['photo'] + "'/></td>"
           " </tr>\n")
       else:
         html_result += " <tr><td colspan='3'>" + str(r) + "</td></tr>\n"
