@@ -10,5 +10,5 @@ HTML table in the browser.
 + The **./BackEnd/product.rpgle** is the RPG program that retrieves the data from DB2 and returns an array of datastructures.
 + The **./BackEnd/build.sh** is a shell script to compile the RPG source.
 
-###CommunicationLayer
+###Communication Layer
 + XmlService is used to communicate between the front and the back end.
