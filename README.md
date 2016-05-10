@@ -1,5 +1,9 @@
 
+<<<<<<< Upstream, based on origin/master
 This project demonstrates how to access an RPG backend using python on the front end.
+=======
+Demo application using python as a front end, rpg on the back end and xmlservice to tie the 2 together
+>>>>>>> 334ecf7 merged README
 
 The ./FrontEnd/showTable.py will dump the HTML result to the console
 The ./FronEnd/runBottle.py will set up a web server on port 80 that will display the 
