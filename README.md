@@ -1,7 +1,6 @@
 This project demonstrates how to access an RPG backend using python on the front end.
 =======
 
-
 ###Front End
 + The **./FrontEnd/showTable.py** will dump the HTML result to the console
 + The **./FronEnd/runBottle.py** will set up a web server on port 80 that will display the 
