@@ -1,8 +1,5 @@
 **free
- ctl-opt AlwNull(*UsrCtl);
- /if defined(*CRTBNDRPG)
- ctl-opt DftActGrp(*NO);
- /endif
+ ctl-opt AlwNull(*UsrCtl) DftActGrp(*NO);
 
 //****************************************************
 // Native I/O files
@@ -46,16 +43,16 @@
 //****************************************************
  dcl-proc product_all;
      dcl-pi product_all;
-       Max                          Int(10: 0);
-       Count                        Int(10: 0);
-       Item                         likeds(prod_t) dim(ARRAYMAX);
+       Max               Int(10: 0);
+       Count             Int(10: 0);
+       Item              likeds(prod_t) dim(ARRAYMAX);
      end-pi;
 // vars
-     dcl-s cat                      BinDec(9: 0) inz(0);
-     dcl-ds PRODFILE1               likerec(XPRODC_t:*INPUT);
+     dcl-s cat           Int(10: 0)  inz(0);
+     dcl-ds PRODFILE1    likerec(XPRODC_t:*INPUT);
 
           Count = 0;
-          setll cat XPRODCAT;
+          setll (cat) XPRODCAT;
           read XPRODCAT PRODFILE1;
           dow not %eof(XPRODCAT);
             if Count = Max;
@@ -77,13 +74,13 @@
 //****************************************************
  dcl-proc product_search_cat;
      dcl-pi product_search_cat;
-       cat                          BinDec(9: 0) const;
-       Max                          Int(10: 0);
-       Count                        Int(10: 0);
-       Item                         likeds(prod_t) dim(ARRAYMAX);
+       cat               Int(10: 0) const;
+       Max               Int(10: 0);
+       Count             Int(10: 0);
+       Item              likeds(prod_t) dim(ARRAYMAX);
      end-pi;
 // vars
-     dcl-ds PRODFILE1               likerec(XPRODC_t:*INPUT);
+     dcl-ds PRODFILE1    likerec(XPRODC_t:*INPUT);
 
           Count = 0;
           setll (cat) XPRODCAT;
