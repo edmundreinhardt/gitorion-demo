@@ -1,7 +1,10 @@
+<<<<<<< Upstream, based on origin/master
 
 <<<<<<< Upstream, based on origin/master
 This project demonstrates how to access an RPG backend using python on the front end.
 =======
+=======
+>>>>>>> 245d61e successful merge
 Demo application using python as a front end, rpg on the back end and xmlservice to tie the 2 together
 >>>>>>> 334ecf7 merged README
 
