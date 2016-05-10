@@ -67,22 +67,23 @@ def show_table():
        "th, td {padding: 5px;text-align: left;width: 200px;}tr:nth-child(even) {background-color: #f3f3f3;}"
        "tr:nth-child(odd) {background-color:#fff;}th {background-color: #008ABF;color: white}</style>")
     html_result += ('<table border="1">\n'
-                    "<th>title</th>\n"
-                    "<th>price</th>\n"
-                    "<th>photo</th>\n")
+                    " <th>title</th>\n"
+                    " <th>price</th>\n"
+                    " <th>photo</th>\n")
     prods = product['findMe']
     if 'title' in prods:
       tmp = prods
       prods = [tmp]
     for r in prods:
       if 'title' in r:
-        html_result += "<tr>"
-        html_result += "<td>" + r['title'] + "</td>"
-        html_result += "<td>" + r['price'] + "</td>"
-        html_result += "<td><img src='http://65.183.160.36/hats/master/" + r['photo'] + "'/></td>"
-        html_result += "</tr>\n"
+        html_result += 
+         (" <tr>"
+          "  <td>" + r['title'] + "</td>"
+          "  <td>" + r['price'] + "</td>"
+          "  <td><img src='http://65.183.160.36/hats/master/" + r['photo'] + "'/></td>"
+          " </tr>\n")
       else:
-        html_result += "<tr><td colspan='3'>" + str(r) + "</td></tr>\n"
+        html_result += " <tr><td colspan='3'>" + str(r) + "</td></tr>\n"
     html_result += '</table>\n'
   else:
     html_result += product['error']
