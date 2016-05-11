@@ -27,7 +27,7 @@
      myCount                Int(10: 0);
      findMe                 likeds(prod_t) dim(ARRAYMAX);
  end-pi;
-
+ 
  // Mainline
         if myCat > 9;
           product_all(myMax:myCount:findMe);
