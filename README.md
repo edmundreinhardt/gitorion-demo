@@ -11,4 +11,4 @@ HTML table in the browser.
 + The **./BackEnd/build.sh** is a shell script to compile the RPG source.
 
 ###Communication Layer
-+ XmlService is used to communicate between the front and the back end.
++ [XmlService](https://www.ibm.com/developerworks/community/wikis/home?lang=en#!/wiki/IBM%20i%20Technology%20Updates/page/Python) is used to communicate between the front and the back end.
