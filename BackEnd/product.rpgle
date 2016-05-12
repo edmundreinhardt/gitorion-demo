@@ -1,7 +1,6 @@
 **free
 //****************************************************
 // This is a demo of Python calling RPG
-// Test: updating the header
 //****************************************************
 
  ctl-opt AlwNull(*UsrCtl) DftActGrp(*NO);
