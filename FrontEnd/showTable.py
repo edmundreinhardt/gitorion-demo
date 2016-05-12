@@ -62,7 +62,9 @@ def show_table():
   html_result = ""
   
   if 'success' in product:
-    html_result = ( "<style>table, th, td {border: 1px solid black;border-collapse: collapse;}"
+    html_result = ( 
+       "<h1>Hats for COMMONers</h1>"
+       "<style>table, th, td {border: 1px solid black;border-collapse: collapse;}"
        "th, td {padding: 5px;text-align: left;width: 200px;}tr:nth-child(even) {background-color: #f3f3f3;}"
        "tr:nth-child(odd) {background-color:#fff;}th {background-color: #008ABF;color: white}</style>\n")
     html_result += ('<table border="1">\n'
