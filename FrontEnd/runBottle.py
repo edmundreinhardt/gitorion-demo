@@ -3,10 +3,7 @@ from bottle import request, route, run
 from showTable import show_table
  
 port_number=80
-host_location='embox1.demos.ibm.com'
-username = 'PYDEMO'
-password = 'pydemo'
- 
+host_location='embox1.demos.ibm.com' 
  
 @route('/')
 def sample():
